@@ -9,24 +9,24 @@ export class FooService {
   add(params: any) {
     if (!params.num1 || !params.num2)
       return { error: 'Please provide 2 numbers to add!' };
-    return { result: Number(params.num1) + Number(params.num2) };
+    return { result: params.num1 + params.num2 };
   }
 
   subtract(params: any) {
     if (!params.num1 || !params.num2)
       return { error: 'Please provide 2 numbers to subtract!' };
-    return { result: Number(params.num1) - Number(params.num2) };
+    return { result: params.num1 - params.num2 };
   }
 
   multiply(params: any) {
     if (!params.num1 || !params.num2)
       return { error: 'Please provide 2 numbers to multiply!' };
-    return { result: Number(params.num1) * Number(params.num2) };
+    return { result: params.num1 * params.num2 };
   }
 
   divide(params: any) {
     if (!params.num1 || !params.num2)
       return { error: 'Please provide 2 numbers to divide!' };
-    return { result: Number(params.num1) / Number(params.num2) };
+    return { result: params.num1 / params.num2 };
   }
 }

@@ -1,8 +1,6 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-
 import { FooService } from './foo.service';
-import { Request } from 'express';
 import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('Foo')
@@ -15,22 +13,22 @@ export class FooController {
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
   @Get('add')
-  add(@Req() req: Request) {
-    return this.service.add({ ...req.query });
+  add(@Query('num1') num1?: number, @Query('num2') num2?: number) {
+    return this.service.add({ num1, num2 });
   }
 
   @Get('subtract')
-  subtract(@Req() req: Request) {
-    return this.service.subtract({ ...req.query });
+  subtract(@Query('num1') num1?: number, @Query('num2') num2?: number) {
+    return this.service.subtract({ num1, num2 });
   }
 
   @Get('multiply')
-  multiply(@Req() req: Request) {
-    return this.service.multiply({ ...req.query });
+  multiply(@Query('num1') num1?: number, @Query('num2') num2?: number) {
+    return this.service.multiply({ num1, num2 });
   }
 
   @Get('divide')
-  divide(@Req() req: Request) {
-    return this.service.divide({ ...req.query });
+  divide(@Query('num1') num1?: number, @Query('num2') num2?: number) {
+    return this.service.divide({ num1, num2 });
   }
 }
