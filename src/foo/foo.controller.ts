@@ -1,8 +1,9 @@
-import { Controller, Get, Req } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 import { FooService } from './foo.service';
 import { Request } from 'express';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('Foo')
 @Controller({
@@ -11,7 +12,8 @@ import { Request } from 'express';
 })
 export class FooController {
   constructor(private service: FooService) {}
-
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
   @Get('add')
   add(@Req() req: Request) {
     return this.service.add({ ...req.query });
